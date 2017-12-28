@@ -29,3 +29,4 @@ class ChannelAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(models.Channel, ChannelAdmin)
+admin.site.register(models.Item)
