@@ -13,7 +13,7 @@ setup(
     name='django-podcast',
     author='Henrique Leal',
     author_email='hm.leal@hotmail.com',
-    version='0.0.1',
+    version='0.0.1dev0',
     description='A small django app to easily publish podcasts',
     long_description=read_md('README.md'),
     url='https://github.com/hmleal/django-podcast',
