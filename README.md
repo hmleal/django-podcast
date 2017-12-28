@@ -20,3 +20,4 @@ urlpatterns = (
 ### Relevant links
 * [RSS 2.0 specification](https://cyber.harvard.edu/rss/rss.html)
 * [DjangoAppChecklist](http://djangoappschecklist.com)
+* [Feed NerdCast](https://jovemnerd.com.br/feed-nerdcast)
