@@ -2,6 +2,11 @@ from django.contrib import admin
 from . import models
 
 
+class EnclosureInLine(admin.StackedInline):
+    model = models.Enclosure
+    # display = ('user_questions_obj')
+
+
 class ChannelAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
@@ -23,10 +28,15 @@ class ChannelAdmin(admin.ModelAdmin):
         ('iTunes', {
             'classes': ('collapse',),
             'fields': (
-                'subtitle', 'summary', 'block', 'redirect', 'keywords', 'itunes'
+                'subtitle', 'summary', 'redirect', 'keywords', 'itunes', 'block'
             )
         })
     )
 
+
+class ItemAdmin(admin.ModelAdmin):
+    inlines = [EnclosureInLine]
+
+
 admin.site.register(models.Channel, ChannelAdmin)
-admin.site.register(models.Item)
+admin.site.register(models.Item, ItemAdmin)

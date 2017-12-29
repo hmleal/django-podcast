@@ -51,10 +51,10 @@ class Item(models.Model):
     # comments    OPTIONAL
     # guid        OPTIONAL
     # source      OPTIONAL
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     link = models.URLField()
     description = models.TextField(help_text='The item synopsis.')
-    # enclosure = models.ForeignKey(on_delete=models.CASCADE)
     pud_date = models.DateTimeField()
     author = models.EmailField(
         help_text='Email address of the author of the item.', blank=True)
@@ -64,3 +64,14 @@ class Item(models.Model):
         blank=True,
         help_text='It\'s a string that uniquely identifies the item'
     )
+
+    def __str__(self):
+        return self.title
+
+
+class Enclosure(models.Model):
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='podcasts/episodes/')
+
+    def __str__(self):
+        return self.file.name
