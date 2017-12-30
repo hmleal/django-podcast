@@ -52,7 +52,9 @@ class Item(models.Model):
     # guid        OPTIONAL
     # source      OPTIONAL
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+
     title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
     link = models.URLField()
     description = models.TextField(help_text='The item synopsis.')
     pud_date = models.DateTimeField()

@@ -8,6 +8,8 @@ class EnclosureInLine(admin.StackedInline):
 
 
 class ChannelAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
     fieldsets = (
         (None, {
             'fields': ('title', 'slug', 'link', 'description')
@@ -35,6 +37,7 @@ class ChannelAdmin(admin.ModelAdmin):
 
 
 class ItemAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
     inlines = [EnclosureInLine]
 
 
