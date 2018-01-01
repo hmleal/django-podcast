@@ -1,0 +1,12 @@
+language: python
+
+python:
+  - "3.6.3"
+
+env:
+  - DJANGO_VERSION=2.0
+
+install:
+  - pip install -q Django==$DJANGO_VERSION
+
+script: python runtests.py

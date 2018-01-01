@@ -1,6 +1,8 @@
 # django-podcast
 > A small django app to easily publish podcasts
 
+[![Build Status](https://travis-ci.org/hmleal/django-podcast.svg?branch=master)](https://travis-ci.org/hmleal/django-podcast) 
+
 ### Installation
 1. Add `podcast` to your `INSTALLED_APPS` in `settings.py`
 ```python
