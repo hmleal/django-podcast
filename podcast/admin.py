@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 
 
@@ -12,7 +13,7 @@ class ChannelAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'link', 'description')
+            'fields': ('title', 'slug', 'link', 'image', 'description')
         }),
         ('Advanced options', {
             'classes': ('collapse',),
@@ -30,7 +31,13 @@ class ChannelAdmin(admin.ModelAdmin):
         ('iTunes', {
             'classes': ('collapse',),
             'fields': (
-                'subtitle', 'summary', 'redirect', 'keywords', 'itunes', 'block'
+                'subtitle',
+                'summary',
+                'redirect',
+                'keywords',
+                'itunes',
+                'explicit',
+                'block'
             )
         })
     )

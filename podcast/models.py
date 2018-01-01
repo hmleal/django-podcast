@@ -19,13 +19,15 @@ class Channel(models.Model):
     )
     pub_date = models.DateTimeField(blank=True, null=True)
     last_build_date = models.DateTimeField(blank=True, null=True)
+    generator = models.CharField(max_length=255, blank=True)
     ttl = models.PositiveIntegerField(
         verbose_name='TTL',
         blank=True,
         null=True,
         help_text='The number of minutes a channel can be cached before refreshing.',
     )
-    generator = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(
+        upload_to='podcast/channel/', blank=True, null=True)
 
     # iTunes
     subtitle = models.CharField(max_length=255, blank=True)
@@ -35,6 +37,7 @@ class Channel(models.Model):
     itunes = models.URLField('iTunes Store URL', blank=True)
     block = models.BooleanField(
         default=False, help_text='Block this podcast on iTunes.')
+    explicit = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
