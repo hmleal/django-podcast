@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<channel>
+    <title>{{ channel.title }}</title>
+    <link>{{ channel.link }}</link>
+    <description>{{ channel.description|striptags }}</description>
+    {% if channel.language %}<language>{{ channel.language }}</language>{% endif %}
+    {% if channel.copyright %}<copyright>{{ channel.copyright }}</copyright>{% endif %}
+    {% if channel.managing_editor %}<managingEditor>{{ channel.managing_editor }}</managingEditor>{% endif %}
+    {% if channel.web_master %}<webMaster>{{ channel.web_master }}</webMaster>{% endif %}
+    {% if channel.pub_date %}<pubDate>{{ channel.pub_date|date:'r' }}</pubDate>{% endif %}
+    {% if channel.last_build_date %}<lastBuildDate>{{ channel.last_build_date|date:'r' }}</lastBuildDate>{% endif %}
+    <!-- <category></category> -->
+    {% if channel.generator %}<generator>{{ channel.generator }}</generator>{% endif %}
+    {% if channel.ttl %}<ttl>{{ channel.ttl }}</ttl>{% endif %}
+    {% if channel.image %}
+    <image>
+        <title>{{ channel.title }}</title>
+        <url>{{ channel.image.url }}</url>
+        <link>{{ channel.link }}</link>
+        <width>{{ channel.image.width }}</width>
+        <height>{{ channel.image.height }}</height>
+    </image>
+    {% endif %}
+
+    {% if channel.subtitle %}<itunes:subtitle>{{ channel.subtitle }}</itunes:subtitle>{% endif %}
+    {% if channel.summary %}<itunes:summary>{{ channel.summary }}</itunes:summary>{% endif %}
+    <itunes:block>{{ channel.block }}</itunes:block>
+    <itunes:explicit>{{ channel.explicit }}</itunes:explicit>
+    {% for item in channel.item_set.all %}
+    <item>
+        <title>{{ item.title }}</title>
+        <link>{{ item.link }}</link>
+        <description>{{ item.description }}</description>
+    </item>
+    {% endfor %}
+</channel>
