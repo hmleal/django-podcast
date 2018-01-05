@@ -33,3 +33,9 @@ class ItemDetail(generic.TemplateView):
 class RSSFeed(generic.TemplateView):
     template_name = 'podcast/rss_feed.html'
     content_type = 'application/rss+xml'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['channel'] = models.Channel.objects.prefetch_related('item_set').get(slug=self.kwargs['channel'])
+
+        return context
