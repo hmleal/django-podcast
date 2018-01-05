@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Channel(models.Model):
@@ -60,7 +61,7 @@ class Item(models.Model):
     slug = models.SlugField(unique=True)
     link = models.URLField()
     description = models.TextField(help_text='The item synopsis.')
-    pud_date = models.DateTimeField()
+    pud_date = models.DateTimeField(default=timezone.now)
     author = models.EmailField(
         help_text='Email address of the author of the item.', blank=True)
     guid = models.CharField(

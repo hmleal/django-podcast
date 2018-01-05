@@ -27,7 +27,13 @@ class ChannelDetail(generic.TemplateView):
 
 
 class ItemDetail(generic.TemplateView):
-    pass
+    def render_to_response(self, context, **kwargs):
+        resp = self.get_data()
+        return HttpResponse(resp, content_type='application/json', **kwargs)
+
+    def get_data(self):
+        qs = models.Item.objects.filter(slug=self.kwargs['item'])
+        return serializers.serialize('json', qs)
 
 
 class RSSFeed(generic.TemplateView):
