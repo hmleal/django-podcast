@@ -70,14 +70,7 @@ class Item(models.Model):
         blank=True,
         help_text='It\'s a string that uniquely identifies the item'
     )
+    enclosure = models.FileField(upload_to='podcasts/items/')
 
     def __str__(self):
         return self.title
-
-
-class Enclosure(models.Model):
-    item = models.OneToOneField(Item, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='podcasts/episodes/')
-
-    def __str__(self):
-        return self.file.name

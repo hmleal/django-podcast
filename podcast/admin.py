@@ -3,11 +3,6 @@ from django.contrib import admin
 from . import models
 
 
-class EnclosureInLine(admin.StackedInline):
-    model = models.Enclosure
-    # display = ('user_questions_obj')
-
-
 class ChannelAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
@@ -45,7 +40,6 @@ class ChannelAdmin(admin.ModelAdmin):
 
 class ItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    inlines = [EnclosureInLine]
 
 
 admin.site.register(models.Channel, ChannelAdmin)
