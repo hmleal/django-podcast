@@ -4,10 +4,30 @@ from django.utils import timezone
 
 class Channel(models.Model):
     # RSS 2.0
+    # title             REQUIRED
+    # link              REQUIRED
+    # description       REQUIRED
+    # language          OPTIONAL
+    # copyright         OPTIONAL
+    # managingEditor    OPTIONAL
+    # webMaster         OPTIONAL
+    # pubDate           OPTIONAL
+    # lastBuildDate     OPTIONAL
+    # category          OPTIONAL
+    # generator         OPTIONAL
+    # docs              OPTIONAL
+    # cloud             OPTIONAL
+    # ttl               OPTIONAL
+    # image             OPTIONAL
+    # rating            OPTIONAL
+    # textInput         OPTIONAL
+    # skipHours         OPTIONAL
+    # skipDays          OPTIONAL
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     link = models.URLField()
     description = models.TextField()
+
     language = models.CharField(max_length=5, blank=True)
     copyright = models.CharField(max_length=255, blank=True)
     managing_editor = models.EmailField(
@@ -53,7 +73,7 @@ class Item(models.Model):
     # author      OPTIONAL
     # category    OPTIONAL
     # comments    OPTIONAL
-    # guid        OPTIONAL
+    # guid        OPTIONAL and UNIQUE
     # source      OPTIONAL
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
 
@@ -64,12 +84,6 @@ class Item(models.Model):
     pud_date = models.DateTimeField(default=timezone.now)
     author = models.EmailField(
         help_text='Email address of the author of the item.', blank=True)
-    guid = models.CharField(
-        max_length=255,
-        unique=True,
-        blank=True,
-        help_text='It\'s a string that uniquely identifies the item'
-    )
     enclosure = models.FileField(upload_to='podcasts/items/')
 
     def __str__(self):

@@ -31,7 +31,10 @@
     <item>
         <title>{{ item.title }}</title>
         <link>{{ item.link }}</link>
+        <guid>{{ item.link }}</guid>
         <description>{{ item.description }}</description>
+        {% if item.author %}<author>{{ item.author }}</author>{% endif %}
+        <enclosure url="{{ item.enclosure.url }}" length="{{ item.enclosure.size }}" type="{{ item.enclosure.mime }}" />
     </item>
     {% endfor %}
 </channel>
