@@ -45,6 +45,7 @@ class TestItemViews(TestCase):
         item = models.Item.objects.create(
             channel=channel,
             title='NerdCast 30 - I See Nerd People',
+            status=2,
             slug='nerdcast-30-i-see-nerd-people',
             link='https://jovemnerd.com.br/?podcast=nerdcast-30-i-see-nerd-people',
             description='Dummy description'
