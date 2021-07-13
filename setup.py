@@ -1,31 +1,30 @@
 from setuptools import setup
+from pathlib import Path
 
-try:
-    from pypandoc import convert_file
 
-    def read_md(filename):
-        return convert_file(filename, 'rst')
-except ImportError:
-    print('warning: pypandoc module not found, could not convert Markdown to RST')
+CURRENT_DIR = Path(__file__).parent
 
-    def read_md(f):
-        return open(f, 'r', encoding='utf-8').read()
+
+def get_long_description():
+    return (CURRENT_DIR / "README.md").read_text(encoding="utf8")
 
 
 setup(
-    name='django-podcast',
-    author='Henrique Leal',
-    author_email='hm.leal@hotmail.com',
-    version='0.0.1dev0',
-    description='A small django app to easily publish podcasts',
-    long_description=read_md('README.md'),
-    url='https://github.com/hmleal/django-podcast',
+    name="django-podcast",
+    author="Henrique Leal",
+    author_email="hm.leal@hotmail.com",
+    version="0.0.1dev1",
+    description="A small django app to easily publish podcasts",
+    long_description=get_long_description(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/hmleal/django-podcast",
+    install_requires=["Pillow"],
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Framework :: Django :: 2.0',
-        'Framework :: Django :: 1.11',
-        'Programming Language :: Python :: 3.6',
-        'Operating System :: OS Independent',
-        'License :: OSI Approved :: MIT License',
-    ]
+        "Development Status :: 3 - Alpha",
+        "Framework :: Django :: 3.2",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: MIT License",
+    ],
 )
