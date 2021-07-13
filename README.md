@@ -1,25 +1,36 @@
 # django-podcast
+
 > A small django app to easily publish podcasts
 
-[![Build Status](https://travis-ci.org/hmleal/django-podcast.svg?branch=master)](https://travis-ci.org/hmleal/django-podcast) 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Build Status](https://travis-ci.org/hmleal/django-podcast.svg?branch=master)](https://travis-ci.org/hmleal/django-podcast)
 
-### Installation
-1. Add `podcast` to your `INSTALLED_APPS` in `settings.py`
-```python
-INSTALLED_APPS = (
-    ...
-    'podcast',
-)
-```
+## Requirements
 
-2. Add these lines to your URL configuration, `urls.py`
-```python
-urlpatterns = (
-    (r'^podcasts/', include('podcast.urls')),
-)
-```
+* Python (3.8, 3.9)
+* Django (3.2)
 
+## Installation
+
+Install using `pip` ...
+
+    pip install django-podcast
+
+Add `'podcast'` to your `INSTALLED_APPS` setting
+
+    INSTALLED_APPS = [
+        ...
+        'rest_framework',
+    ]
+
+Add these lines to your URL configuration, `urls.py`
+
+    urlpatterns = (
+        path('podcasts/', include('podcast.urls')),
+    )
+    
 ### Relevant links
-* [RSS 2.0 specification](https://cyber.harvard.edu/rss/rss.html)
-* [DjangoAppChecklist](http://djangoappschecklist.com)
-* [Feed NerdCast](https://jovemnerd.com.br/feed-nerdcast)
+
+- [RSS 2.0 specification](https://cyber.harvard.edu/rss/rss.html)
+- [DjangoAppChecklist](http://djangoappschecklist.com)
+- [Feed NerdCast](https://jovemnerd.com.br/feed-nerdcast)
