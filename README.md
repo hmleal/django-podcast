@@ -20,7 +20,7 @@ Add `'podcast'` to your `INSTALLED_APPS` setting
 
     INSTALLED_APPS = [
         ...
-        'rest_framework',
+        'podcast',
     ]
 
 Add these lines to your URL configuration, `urls.py`
@@ -28,7 +28,11 @@ Add these lines to your URL configuration, `urls.py`
     urlpatterns = (
         path('podcasts/', include('podcast.urls')),
     )
-    
+
+And finally migrate your database
+
+    python manage.py migrate podcast
+
 ### Relevant links
 
 - [RSS 2.0 specification](https://cyber.harvard.edu/rss/rss.html)
