@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from . import managers
+
 
 class Channel(models.Model):
     # RSS 2.0
@@ -75,8 +77,18 @@ class Item(models.Model):
     # comments    OPTIONAL
     # guid        OPTIONAL and UNIQUE
     # source      OPTIONAL
-    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
 
+    STATUS_DRAFT = 1
+    STATUS_PUBLIC = 2
+    STATUS_PRIVATE = 3
+
+    STATUS_CHOICES = (
+        (STATUS_DRAFT, 'Draft'),
+        (STATUS_PUBLIC, 'Public'),
+        (STATUS_PRIVATE, 'Private'),
+    )
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    status = models.PositiveIntegerField(choices=STATUS_CHOICES)
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     link = models.URLField()
@@ -85,6 +97,8 @@ class Item(models.Model):
     author = models.EmailField(
         help_text='Email address of the author of the item.', blank=True)
     enclosure = models.FileField(upload_to='podcasts/items/')
+
+    objects = models.Manager.from_queryset(managers.ItemQuerySet)()
 
     def __str__(self):
         return self.title
